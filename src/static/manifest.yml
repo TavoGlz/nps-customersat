@@ -1,0 +1,4 @@
+applications:
+- name: nps-customersat
+  memory: 512M
+  host: nps-customersat

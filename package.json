@@ -1,6 +1,6 @@
 {
   "name": "nps-customersat",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -8,7 +8,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dist": "ng build && cp src/static/manifest.yml src/static/Staticfile dist",
+    "push": "npm run dist && cd dist && cf push"
   },
   "private": true,
   "dependencies": {
