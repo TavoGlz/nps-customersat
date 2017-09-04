@@ -1,0 +1,78 @@
+<nav class="navbar navbar-toggleable-md navbar-light">
+  <a class="navbar-brand" href="">
+    <img src="./favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+    Testing {{title}} on Angular 2
+  </a>
+  <a *ngIf="!is_logged" class="navbar-text login-style" href="#" (click)="showLoginModal()">
+      Log in
+  </a>
+  <a *ngIf="is_logged" class="navbar-text login-style" href="#" (click)="logOut()">
+      Log out
+  </a>
+</nav>
+<div class="div-metrics div-top">
+  <metric
+    id="csat"
+    [metric]="csat"
+    (onSendSurvey)="onSendSrvy($event)"
+    (reloadSurvey)="reloadSurvey($event, 'csat')">
+  </metric>
+  <div *ngIf="reload_csat">
+    Your feedback is important to improve our team, please rate our work and share your thoughts with us<br>
+    click to reopen this survey:
+    <a name="csat" class="nav-link" (click)="showMetric(true, false)" href="#">CSAT</a>
+  </div>
+  <div *ngIf="csat_sent">
+    <h2 class="sent">Survey sent</h2>
+    Thanks for your feedback!
+  </div>
+</div>
+<div class="div-metrics div-bottom">
+  <metric
+    id="nps"
+    [metric]="nps"
+    (onSendSurvey)="onSendSrvy($event)"
+    (reloadSurvey)="reloadSurvey($event, 'nps')">
+  </metric>
+  <div *ngIf="reload_nps">
+    Your feedback is important to improve our team, please rate our work and share your thoughts with us<br>
+    click to reopen this survey:
+    <a name="nps" class="nav-link" (click)="showMetric(false, true)" href="#">NPS</a>
+  </div>
+  <div *ngIf="nps_sent">
+    <h2 class="sent">Survey sent</h2>
+    Thanks for your feedback!
+  </div>
+</div>
+<div *ngIf="is_logged" class="container"> <!--[class.hidden]="hide_table"-->
+  <h3>Metrics Summary</h3><br>
+  <ng2-smart-table [source]="metrics" [settings]="settings">
+  </ng2-smart-table>
+</div>
+<div class="container">
+  <div class="modal fade" id="login-modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          &emsp;<div class="form-btn exit-btn" data-dismiss="modal" (click)="loginForm.reset()">&times;</div>
+        </div>
+        <div class="modal-body">
+          <form role="form" [formGroup]="loginForm">
+            <div class="form-group">
+              <label for="usrname">Username</label>
+              <input type="text" class="form-control" placeholder="Enter username or email" name="userCtrl" formControlName="userCtrl">
+            </div>
+            <div class="form-group">
+              <label for="psw">Password</label>
+              <input type="password" class="form-control" placeholder="Enter password" name="passCtrl" formControlName="passCtrl">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div class="form-btn login-btn" (click)="authLogin()">Login</div>
+          <div class="form-btn cancel-btn" data-dismiss="modal" (click)="loginForm.reset()">Cancel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

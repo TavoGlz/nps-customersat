@@ -1,0 +1,32 @@
+<div id="{{ metric.name }}-id" class="metric-group hidden">
+  <div class="exit"><div class="exit-btn" (click)="exit()"><span>x</span></div></div>
+  <div>
+    <legend class="legend-label">{{ metric.title }}</legend>
+  </div>
+  <form [formGroup]="metricForm">
+    <div class="score-group">
+      <div class="less">{{ metric.less }}</div>
+      <!--Score radio buttons -->
+      <div *ngFor="let score of metric.score" class="score-radio">
+        <input class="input-radio" type="radio" id="{{ metric.name +'-'+ score }}" name="scoreCtrl" formControlName="scoreCtrl" value="{{ score }}"/>
+        <label for="{{ metric.name +'-'+ score }}" (click)="openSurvey()"><span class="score">{{ score }}</span></label>
+      </div>
+      <!--End of score radio buttons -->
+      <div class="more">{{ metric.more }}</div>
+    </div>
+    <!--Div for breakpoints-->
+    <div class="div-labels">
+      <div class="div-less">{{ metric.less }}</div>
+      <div class="div-more">{{ metric.more }}</div>
+    </div>
+    <!--Textarea and send button-->
+    <div id="{{ metric.name }}-survey-id" class="survey hidden-inline">
+      <div class="textarea-container">
+        <textarea class="form-control-metric comment" rows="2" type="text" placeholder="Add a comment" maxlength="500" formControlName="commentCtrl"></textarea>
+      </div>
+      <div class="btn-metric-container">
+        <button type="button" class="btn-metric btn-metrics btn-send" (click)="sendSurvey()">Send</button>
+      </div>
+    </div>
+  </form>
+</div>

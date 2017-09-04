@@ -1,0 +1,86 @@
+h3 {
+  text-align: center;
+  color: #0F67C7;
+}
+
+.login-style:hover {
+  text-decoration: none;
+  color: rgb(100,100,100);
+}
+
+.div-top {
+  bottom: calc(100% - 15em);
+}
+
+.div-bottom {
+  bottom: calc(100% - 30em);
+}
+
+.div-metrics {
+  box-sizing: content-box;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-header, h4, .close {
+    background-color: #0050B8;
+    color: white !important;
+    text-align: center;
+    font-size: 30px;
+    padding: 6px 30px;
+}
+
+.modal-body {
+  padding:10px 20px;
+}
+
+.modal-footer {
+    background-color: #eeeeee;
+    font-size: 18px;
+}
+
+.form-btn {
+  display: inline-block;
+  text-align: center;
+  cursor:pointer;
+  line-height: 18px;
+}
+
+.exit-btn {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: bold;
+  background-color: #0050B8;
+}
+
+.exit-btn:hover {
+  font-size: 30px;
+}
+
+.login-btn {
+  color: #006AC9;
+}
+
+.login-btn:hover {
+  color: #0086FF;
+}
+
+.cancel-btn {
+  color: #B51608;
+}
+
+.cancel-btn:hover {
+  color: #dd0000;
+}
+
+.sent {
+  color: #00BA4F;
+}

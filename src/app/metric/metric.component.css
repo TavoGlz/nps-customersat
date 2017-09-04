@@ -1,0 +1,354 @@
+* {
+  box-sizing: content-box;
+}
+.metric-group {
+  position: absolute;
+  top: calc(100% - 10em);
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255);
+  z-index: 999;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.exit {
+  width: 100%;
+  clear: right;
+  margin: 0;
+  text-align: right;
+}
+.exit-btn {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  font-weight: bold;
+  color: #B5302B;
+  text-align: center;
+  cursor:pointer;
+  line-height: 18px;
+  font-size: 16px;
+  margin: 0 6px 0 0;
+  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+}
+.exit-btn:hover {
+  color: white;
+  border-radius: 50%;
+  /*background: #5e5e5e;*/
+  background: #B5302B;
+}
+.legend-label {
+  padding-bottom: 5px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  text-align: center;
+  opacity: .9;
+  font-weight: 580;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+.legen-label,
+.less,
+.score,
+.more,
+.div-less,
+.div-more,
+.comment,
+.btn-send {
+  font-family: Helvetica, sans-serif;
+}
+.less,
+.more {
+  display:inline-block;
+  opacity: .9;
+}
+.score-group {
+  display: inline-block;
+}
+.score-radio {
+  display:inline-block;
+}
+.input-radio {
+    display:none;
+}
+.input-radio + label {
+    color: black;
+    text-align:center;
+}
+.input-radio + label span {
+    display:block;
+    margin: 0 1px;
+    color: rgba(0, 0, 0, .6);
+    text-align:center;
+    border-radius:  50%;
+    -moz-border-radius:  50%;
+    border: 1px solid rgba(143, 188, 143, .9);
+    background: white;
+    cursor:pointer;
+}
+.input-radio:checked + label span,
+.input-radio:hover + label span
+ {
+  color: #FFF;
+  background-color: rgb(143, 188, 143);
+}
+.input-radio + label span,
+.input-radio:checked + label span {
+  -webkit-transition:background-color 0.4s linear;
+  -o-transition:background-color 0.4s linear;
+  -moz-transition:background-color 0.4s linear;
+  transition:background-color 0.4s linear;
+}
+.div-labels {
+  display: inline-block;
+  width: 100%;
+  opacity: .9;
+}
+.div-less,
+.div-more {
+  width: 50%;
+  float: left;
+}
+.div-less {
+  text-align: left;
+}
+.div-more {
+  text-align: right;
+}
+.survey {
+  display: inline-block;
+}
+.form-control-metric {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  height: 36px;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control-metric:focus {
+  border-color: rgba(143, 188, 143, .9);;
+  outline: 0;
+}
+.form-control-metric::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+.form-control-metric:-ms-input-placeholder {
+  color: #999;
+}
+.form-control-metric::-webkit-input-placeholder {
+  color: #999;
+}
+.btn-metric {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.textarea-container,
+.btn-metric-container {
+  float: left;
+  opacity: .8;
+}
+.show-inline {
+  display: inline-block;
+}
+.hidden-inline {
+  display: none;
+}
+.btn-metrics {
+  color: black;
+  background-color: white;
+  border-color: rgba(143, 188, 143, .9);
+}
+
+.btn-metrics:hover {
+  color: #fff;
+  background-color: rgba(143, 188, 143, .9);
+  border-color: rgba(143, 188, 143, .9);
+}
+
+.btn-metrics.disabled, .btn-metrics:disabled {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+.btn-metrics:active, .btn-metrics.active,
+.show > .btn-metrics.dropdown-toggle {
+  color: #fff;
+  background-color: #449d44;
+  background-image: none;
+  border-color: #419641;
+}
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+@media (min-width: 320px) {
+  .metric-group {
+    width: 315px;
+    padding: 2.5px 2.5px;
+    border-radius: 10px;
+  }
+  .legend-label {
+    font-size: 12px;
+  }
+  .less,
+  .more {
+    display: none;
+  }
+  .score-group {
+    padding: 0 3.5px;
+  }
+  .score-radio {
+    font-size:10px !important;
+  }
+  .input-radio + label {
+    line-height:24px;
+  }
+  .input-radio + label span {
+    width:24px;
+    height:24px;
+  }
+  .div-labels {
+    display: inline-block;
+  }
+  .div-less,
+  .div-more {
+    font-size: 10px;
+  }
+  .survey {
+    width: 315px;
+  }
+  .btn-send,
+  .comment {
+    font-size: 10px;
+  }
+  .comment {
+    resize: none;
+  }
+  .btn-send {
+    padding: 6px;
+  }
+  .textarea-container {
+    width: 85%;
+  }
+  .btn-metric-container {
+    width: 15%;
+    margin-top: 12px;
+  }
+}
+@media (min-width: 485px) {
+  .metric-group {
+    width: 465px;
+    padding: 10px 10px;
+    border-radius: 25px;
+  }
+  .legend-label {
+    font-size: 16px;
+  }
+  .less,
+  .more {
+    display: none;
+  }
+  .score-group {
+    padding: 0 3.5px;
+  }
+  .score-radio {
+    font-size:14px !important;
+  }
+  .input-radio + label {
+    line-height:34px;
+  }
+  .input-radio + label span {
+    width:35px;
+    height:35px;
+  }
+  .div-labels {
+    display: inline-block;
+  }
+  .div-less,
+  .div-more {
+    font-size: 14px;
+  }
+  .survey {
+    width: 395px;
+  }
+  .btn-send,
+  .comment {
+    font-size: 14px;
+  }
+  .btn-send {
+    padding: 10px;
+  }
+  .textarea-container {
+    width: 307px;
+  }
+  .btn-metric-container {
+    width: 88px;
+    margin: 4.5px 0;
+   }
+}
+@media (min-width: 670px) {
+  .metric-group {
+    width: 660px;
+    padding: 10px 10px;
+    border-radius: 25px;
+  }
+  .legend-label {
+    font-size: 18px;
+  }
+  .less,
+  .more {
+    display: inline-block;
+  }
+  .score-group {
+    padding: 0 3.5px;
+  }
+  .score-radio,
+  .div-less,
+  .div-more {
+    font-size:16px !important;
+  }
+  .input-radio + label {
+    line-height:35px;
+  }
+  .input-radio + label span {
+    width:35px;
+    height:35px;
+  }
+  .div-labels {
+    display: none;
+  }
+  .survey {
+    margin-top: 10px;
+  }
+}
