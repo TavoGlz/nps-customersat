@@ -19,12 +19,17 @@ export class CloudantService {
   results: any;
   api: any;
 
-  constructor(private _http: Http, private zone: NgZone) {
-    this.db = new PouchDB('nps_cat');
-    this.username = '0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix';
-    this.password = 'a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f';
 
-    this.remote = 'https://0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix:a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f@0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix.cloudant.com/nps_cat/';
+  constructor(private _http: Http, private zone: NgZone) {
+    //this.db = new PouchDB('nps_cat');
+    //this.username = '0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix';
+    //this.password = 'a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f';
+    //this.remote = 'https://0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix:a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f@0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix.cloudant.com/nps_cat/';
+
+    this.db = new PouchDB(process.env.DB_NAME);
+    this.username = process.env.DB_USER;
+    this.password = process.env.DB_PASSWORD;
+    this.remote = process.env.CLOUDANT_ROUTE;
 
     let options = {
       live: true,
