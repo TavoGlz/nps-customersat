@@ -169,14 +169,11 @@ export class AppComponent implements AfterViewInit, OnInit{
             this.csat_sent = false;
             this.nps_sent = false;
           } else {
-            alert("Wrong credentials");
+            alert("ACCESS DENIED\n Unknown credentials");
           }
         }).catch((ex) => {
           console.error('Error fetching metrics', ex);
         });
-        /*if(user === "tequila" && pass === "squad") {
-
-        }*/
       } else {
         alert("Pasword required");
       }

@@ -6,7 +6,7 @@
   <a *ngIf="!is_logged" class="navbar-text login-style" href="#" (click)="showLoginModal()">
       Log in
   </a>
-  <a *ngIf="is_logged" class="navbar-text login-style" href="#" (click)="logOut()">
+  <a *ngIf="is_logged" class="navbar-text login-style" href="/" (click)="logOut()">
       Log out
   </a>
 </nav>
@@ -44,7 +44,7 @@
     Thanks for your feedback!
   </div>
 </div>
-<div *ngIf="is_logged" class="container"> <!--[class.hidden]="hide_table"-->
+<div *ngIf="is_logged" class="">
   <h3>Metrics Summary</h3><br>
   <ng2-smart-table [source]="metrics" [settings]="settings">
   </ng2-smart-table>

@@ -64,17 +64,22 @@ export class MetricComponent implements AfterViewInit {
    * Emit JSON
    */
   private sendSurvey() {
-    // Set JSON values
-    this.metric.setCommentJSON(
-      this.metricForm.get('commentCtrl').value);
-    this.metric.setScoreJSON(
-      this.metricForm.get('scoreCtrl').value);
-    this.metric.setCurrentDateJSON();
+    let commentVal = this.metricForm.get('commentCtrl').value;
+    if(commentVal === null || commentVal.trim() === "" || commentVal === ""){
+      alert("Please write a comment");
+    } else {
+      // Set JSON values
+      this.metric.setCommentJSON(
+        commentVal.trim());
+      this.metric.setScoreJSON(
+        this.metricForm.get('scoreCtrl').value);
+      this.metric.setCurrentDateJSON();
 
-    // Hide the component
-    this.cleanUpMetric();
-    // Emit metricJSON
-    this.onSendSurvey.emit(<JSON> this.metric.getJSON());
+      // Hide the component
+      this.cleanUpMetric();
+      // Emit metricJSON
+      this.onSendSurvey.emit(<JSON> this.metric.getJSON());
+    }
   }//sendSurvey
 
   exit() {
