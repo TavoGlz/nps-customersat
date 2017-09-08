@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { MetricComponent } from './metric/metric.component';
 import { CloudantService } from './cloudant.service';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    MyDateRangePickerModule
   ],
   providers: [
     CloudantService

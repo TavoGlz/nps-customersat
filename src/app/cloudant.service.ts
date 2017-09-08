@@ -22,12 +22,14 @@ export class CloudantService {
 
   constructor(private _http: Http, private zone: NgZone) {
     if (process.env.SPACE === undefined) {
+      console.log("Local");
       this.db = new PouchDB('nps_cat');
       this.username = '0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix';
       this.password = 'a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f';
       this.remote = 'https://0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix:a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f@0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix.cloudant.com/nps_cat/';
     }
     if (process.env.SPACE === "dev") {
+      console.log("Server");
       this.db = new PouchDB(process.env.DB_NAME);
       this.username = process.env.DB_USER;
       this.password = process.env.DB_PASSWORD;
@@ -88,10 +90,10 @@ export class CloudantService {
     this.db.put(doc);
   }
 
-  getMetrics() {
+  getMetrics(startk: any, endk: any) {
+    let viewOpts = (startk === "" && endk === "") ? {} : {ascending : true, startkey: startk, endkey: endk};
     return new Promise(resolve => {
-      this.db.query('All-metrics/get_metrics', {
-      }).then((res) => {
+      this.db.query('All-metrics/get_metrics', viewOpts).then((res) => {
         this.data = res;
         resolve(this.data);
       }).catch((err) => {
