@@ -1,6 +1,6 @@
 {
-  "name": "nps-customersat",
-  "version": "0.0.1",
+  "name": "mxbi-tequila-npscsat",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

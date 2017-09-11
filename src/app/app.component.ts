@@ -67,16 +67,20 @@ export class AppComponent implements AfterViewInit, OnInit{
   }
 
   ngOnInit() {
-    this.db.initCall();
-    this.myForm = this.formBuilder.group({
-      // Empty string means no initial value. Can be also specific date range for example:
-      // {beginDate: {year: 2018, month: 10, day: 9}, endDate: {year: 2018, month: 10, day: 19}}
-      // which sets this date range to initial value. It is also possible to set initial
-      // value using the selDateRange attribute.
+    try{
+      this.db.initCall();
+      this.myForm = this.formBuilder.group({
+        // Empty string means no initial value. Can be also specific date range for example:
+        // {beginDate: {year: 2018, month: 10, day: 9}, endDate: {year: 2018, month: 10, day: 19}}
+        // which sets this date range to initial value. It is also possible to set initial
+        // value using the selDateRange attribute.
 
-      myDateRange: ['', Validators.required]
-      // other controls are here...
-    });
+        myDateRange: ['', Validators.required]
+        // other controls are here...
+      });
+    } catch(except){
+      console.log("Error on Init: "+except);
+    }
   }
 
   ngAfterViewInit() {
@@ -210,32 +214,25 @@ export class AppComponent implements AfterViewInit, OnInit{
       let promoters = [];
       let pasives = [];
       let npsSum = 0;
-      let detSum = 0;
-      let proSum = 0;
-      let pasSum = 0;
+      let npsTotal = 0;
       let scoreVal = 0;
       for (let i=0; i<npsArr.length; i++) {
           scoreVal = Number(npsArr[i].score);
           if(scoreVal >= 0 && scoreVal <= 6) {
             detractors.push(scoreVal);
-            detSum += scoreVal;
             npsSum += 1;
           };
           if(scoreVal === 7 || scoreVal === 8) {
             pasives.push(scoreVal);
-            pasSum += scoreVal;
             npsSum += 1;
           };
           if(scoreVal === 9 || scoreVal === 10) {
             promoters.push(scoreVal);
-            proSum += scoreVal;
             npsSum += 1;
           };
       }
-      console.log(detractors.length+" + "+pasives.length+" + "+promoters.length+" = "+npsSum);
-      console.log((detractors.length * 100)/npsSum);
-      console.log((promoters.length * 100)/npsSum);
-      this.netProScore = ((detractors.length * 100)/npsSum) - ((promoters.length * 100)/npsSum);
+      npsTotal = ((detractors.length * 100)/npsSum) - ((promoters.length * 100)/npsSum);
+      this.netProScore = Number(npsTotal.toFixed(2));
     } else {
       this.netProScore = 0;
     }

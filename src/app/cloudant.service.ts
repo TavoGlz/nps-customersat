@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 
 import * as PouchDB from 'pouchdb/dist/pouchdb';
 
+declare var require: any;
+
 @Injectable()
 export class CloudantService {
 
@@ -21,32 +23,44 @@ export class CloudantService {
 
 
   constructor(private _http: Http, private zone: NgZone) {
-    if (process.env.SPACE === undefined) {
-      console.log("Local");
-      this.db = new PouchDB('nps_cat');
-      this.username = '0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix';
-      this.password = 'a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f';
-      this.remote = 'https://0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix:a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f@0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix.cloudant.com/nps_cat/';
-    }
-    if (process.env.SPACE === "dev") {
-      console.log("Server");
-      this.db = new PouchDB(process.env.DB_NAME);
-      this.username = process.env.DB_USER;
-      this.password = process.env.DB_PASSWORD;
-      this.remote = process.env.CLOUDANT_REMOTE;
-    }
-
-    let options = {
-      live: true,
-      retry: true,
-      continuous: true,
-      auth: {
-        username: this.username,
-        password: this.password
+    try{
+      if (process.env.SPACE === "dev") {
+        this.db = new PouchDB(process.env.DB_NAME);
+        this.username = process.env.DB_USER;
+        this.password = process.env.DB_PASSWORD;
+        this.remote = process.env.CLOUDANT_REMOTE;
       }
-    };
+      if (process.env.SPACE === undefined) {
+        this.db = new PouchDB('nps_cat');
+        this.username = '0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix';
+        this.password = 'a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f';
+        this.remote = 'https://0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix:a62e9510825db44339f10bf9c67a9f44e0d43994c6febb364135f8611609e62f@0d952d90-cd13-4583-91c8-f2caf6d6cb93-bluemix.cloudant.com/nps_cat/';
+      }
+      /*if (process.env.SPACE === undefined) {
+        console.log(process);
+        const env_variables = require('node-env-file')('./../../../.env', {raise: false});
+        console.log(process);
+        console.log(env_variables);
+        this.db = new PouchDB(env_variables.LOCAL_DB_NAME);
+        this.username = env_variables.LOCAL_DB_USER;
+        this.password = env_variables.LOCAL_DB_PASSWORD;
+        this.remote = env_variables.LOCAL_CLOUDANT_REMOTE;
+      }*/
 
-    this.db.sync(this.remote, options);
+      let options = {
+        live: true,
+        retry: true,
+        continuous: true,
+        auth: {
+          username: this.username,
+          password: this.password
+        }
+      };
+
+      this.db.sync(this.remote, options);
+    } catch(except) {
+      console.log("Error in DB service constructor: "+except);
+    }
 
   }
 

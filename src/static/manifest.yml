@@ -1,4 +1,4 @@
 applications:
-- name: nps-customersat
+- name: mxbi-tequila-npscsat
   memory: 512M
-  host: nps-customersat
+  host: mxbi-tequila-npscsat
