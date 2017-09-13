@@ -3,16 +3,18 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
+
 import { AppComponent } from './app.component';
 import { MetricComponent } from './metric/metric.component';
 import { CloudantService } from './cloudant.service';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { MyDateRangePickerModule } from 'mydaterangepicker';
+import { LoginAuth } from './sso.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MetricComponent
+    MetricComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
     MyDateRangePickerModule
   ],
   providers: [
-    CloudantService
+    CloudantService,
+    LoginAuth
   ],
   bootstrap: [
     AppComponent

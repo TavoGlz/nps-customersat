@@ -84,7 +84,7 @@
     text-align:center;
     border-radius:  50%;
     -moz-border-radius:  50%;
-    border: 1px solid rgba(143, 188, 143, .9);
+    border: 1px solid rgba(19, 130, 196, .5);
     background: white;
     cursor:pointer;
 }
@@ -92,7 +92,7 @@
 .input-radio:hover + label span
  {
   color: #FFF;
-  background-color: rgb(143, 188, 143);
+  background-color: rgba(19, 130, 196);
 }
 .input-radio + label span,
 .input-radio:checked + label span {

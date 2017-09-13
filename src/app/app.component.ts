@@ -3,11 +3,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { CloudantService } from './cloudant.service';
+import { LoginAuth } from './sso.service';
 import { Metric } from './metric/metric.model';
 import { MetricComponent } from './metric/metric.component';
 
 import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
 import { Observable } from 'rxjs/Observable';
+
 declare var $:any;
 
 @Component({
@@ -61,7 +63,7 @@ export class AppComponent implements AfterViewInit, OnInit{
 
   private myForm: FormGroup;
 
-  constructor(public db: CloudantService, private formBuilder: FormBuilder) {
+  constructor(public db: CloudantService, private formBuilder: FormBuilder, private sso: LoginAuth) {
     this.csat = new Metric('csat', 'Tequila Squad');
     this.nps = new Metric('nps', 'Tequila Squad');
   }
@@ -231,7 +233,9 @@ export class AppComponent implements AfterViewInit, OnInit{
             npsSum += 1;
           };
       }
-      npsTotal = ((detractors.length * 100)/npsSum) - ((promoters.length * 100)/npsSum);
+      //console.log(detractors.length+" + "+pasives.length+" + "+promoters.length+" = "+(detractors.length+pasives.length+promoters.length));
+      //console.log(((promoters.length * 100)/npsSum)+" - "+((detractors.length * 100)/npsSum)+" = "+(((promoters.length * 100)/npsSum) - ((detractors.length * 100)/npsSum)));
+      npsTotal = ((promoters.length * 100)/npsSum) - ((detractors.length * 100)/npsSum);
       this.netProScore = Number(npsTotal.toFixed(2));
     } else {
       this.netProScore = 0;
