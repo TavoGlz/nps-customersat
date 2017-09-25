@@ -1,7 +1,7 @@
 <nav class="navbar navbar-toggleable-md navbar-light">
   <a class="navbar-brand" href="">
     <img src="./favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
-    Testing {{title}} on Angular 2
+    {{squad}} Squad - NPS & CSAT
   </a>
   <a *ngIf="!is_logged" class="navbar-text login-style" href="#" (click)="showLoginModal()">
       Log in
@@ -49,7 +49,7 @@
   <form [formGroup]="myForm" novalidate>
     <div class="form-group row">
       <label for="daterng" class="col-2 col-form-label"><h5>Date range:</h5></label>
-      <div class="col-4">
+      <div class="col-3">
         <my-date-range-picker
           id="daterng"
           name="mydaterange"
@@ -58,8 +58,20 @@
           (dateRangeChanged)="onDateRangeChanged($event)">
         </my-date-range-picker>
       </div>
-      <label for="npsv" class="col-2 col-form-label"><h5>NPS: </h5></label>
-      <span id="npsv">{{netProScore}}%</span>
+      <label for="slciterat" class="col-1 col-form-label"><h5>Iteration:</h5></label>
+      <div class="col-1">
+        <select class="custom-select" id="slciterat" formControlName="myItSelector" (change)="OnItSelected($event.target.value)">
+          <option value="-">-</option>
+          <option *ngFor='let iteration of IterationsArr' [value]="IterationsArr.indexOf(iteration)"> {{iteration[0]}} </option>
+        </select>
+      </div>
+      <div *ngIf="npstotal_shown" class="col-5">
+        <label for="npsv" class="col-2 col-form-label"><h5>NPS: </h5></label>
+        <span [ngClass]="netProScore > 0 ? 'text-success': 'text-danger'" id="npsv">{{netProScore}}%</span>
+      </div>
+      <div *ngIf="!npstotal_shown" class="col-5">
+        <span id="npsv">Date range is empty or provided range has no NPS results</span>
+      </div>
     </div>
   </form>
   <ng2-smart-table [source]="metrics" [settings]="settings">

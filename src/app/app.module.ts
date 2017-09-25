@@ -9,7 +9,6 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { AppComponent } from './app.component';
 import { MetricComponent } from './metric/metric.component';
 import { CloudantService } from './cloudant.service';
-import { LoginAuth } from './sso.service';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import { LoginAuth } from './sso.service';
     MyDateRangePickerModule
   ],
   providers: [
-    CloudantService,
-    LoginAuth
+    CloudantService
   ],
   bootstrap: [
     AppComponent
