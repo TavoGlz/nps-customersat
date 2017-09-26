@@ -10,9 +10,11 @@ import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
 import { Observable } from 'rxjs/Observable';
 
 import * as Moment from 'moment';
+//import * as express from 'express';
 
 //var app = require('./server').app;
 declare var $:any;
+//const app: express.Application = express();
 
 @Component({
   selector: 'app-root',
@@ -39,7 +41,7 @@ export class AppComponent implements AfterViewInit, OnInit{
   npstotal_shown: boolean = false;
   netProScore: number = 0;
 
-  loginForm= new FormGroup({
+  loginForm = new FormGroup({
     userCtrl: new FormControl(),
     passCtrl: new FormControl()
   });

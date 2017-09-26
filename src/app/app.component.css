@@ -1,3 +1,7 @@
+nav {
+  background-color: rgba(19, 130, 196);
+}
+
 h3 {
   text-align: center;
   color: #0F67C7;
@@ -8,9 +12,13 @@ h5 {
   color: #0F67C7;
 }
 
+.login-style {
+  color: #ccc;
+}
+
 .login-style:hover {
   text-decoration: none;
-  color: rgb(100,100,100);
+  color: #ddd;
 }
 
 .div-top {
@@ -36,7 +44,7 @@ h5 {
 }
 
 .modal-header, h4, .close {
-    background-color: #0050B8;
+    background-color: rgba(19, 130, 196);
     color: white !important;
     text-align: center;
     font-size: 30px;
@@ -48,7 +56,7 @@ h5 {
 }
 
 .modal-footer {
-    background-color: #eeeeee;
+    background-color: #eee;
     font-size: 18px;
 }
 
@@ -60,10 +68,10 @@ h5 {
 }
 
 .exit-btn {
-  color: #ffffff;
+  color: #fff;
   font-size: 26px;
   font-weight: bold;
-  background-color: #0050B8;
+  background-color: rgba(19, 130, 196);
 }
 
 .exit-btn:hover {
