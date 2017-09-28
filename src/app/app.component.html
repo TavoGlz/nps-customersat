@@ -1,6 +1,6 @@
 <nav class="navbar navbar-toggleable-md navbar-light">
   <span class="navbar-brand login-style">
-    <img src="./favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+    <img src="./assets/ibm.png" height="24" class="d-inline-block align-top" alt="">
     {{squad}} Squad - NPS & CSAT
   </span>
   <a *ngIf="!is_logged" class="navbar-text login-style" href="#" (click)="showLoginModal()">
@@ -45,7 +45,9 @@
   </div>
 </div>
 <div *ngIf="is_logged" class="container">
-  <h3>Metrics Summary</h3><br>
+  <br>
+  <h3>Metrics Summary</h3>
+  <hr>
   <form [formGroup]="myForm" novalidate>
     <div class="form-group row">
       <label for="daterng" class="col-2 col-form-label"><h5>Date range:</h5></label>
@@ -67,13 +69,16 @@
       </div>
       <div *ngIf="npstotal_shown" class="col-5">
         <label for="npsv" class="col-2 col-form-label"><h5>NPS: </h5></label>
-        <span [ngClass]="netProScore > 0 ? 'text-success': 'text-danger'" id="npsv">{{netProScore}}%</span>
+        <strong title="NPS(detractors 1-6, pasives 7-8, promoters 9-10) is calculated by subtracting detractors(D%) from promoters(P%). Min posible result -100% Max posible result 100%" data-toggle="tooltip" data-placement="right" data-trigger="hover">
+          <span [ngClass]="netProScore > 0 ? 'text-success': 'text-danger'" id="npsv">{{netProScore}}%</span>
+        </strong>
       </div>
       <div *ngIf="!npstotal_shown" class="col-5">
         <span id="npsv">Date range is empty or provided range has no NPS results</span>
       </div>
     </div>
   </form>
+  <hr>
   <ng2-smart-table [source]="metrics" [settings]="settings">
   </ng2-smart-table>
 </div>

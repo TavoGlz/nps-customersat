@@ -1,6 +1,7 @@
 import { AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { enableProdMode } from '@angular/core';
 
 import { CloudantService } from './cloudant.service';
 import { Metric } from './metric/metric.model';
@@ -10,11 +11,10 @@ import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
 import { Observable } from 'rxjs/Observable';
 
 import * as Moment from 'moment';
-//import * as express from 'express';
 
-//var app = require('./server').app;
+enableProdMode();
+
 declare var $:any;
-//const app: express.Application = express();
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,6 @@ declare var $:any;
 export class AppComponent implements AfterViewInit, OnInit{
   @ViewChildren(MetricComponent)
   private metricInstances: QueryList<MetricComponent>;
-  //@ViewChildren('input') inpt;
 
   squad = 'MXBI | Tequila';
   csat: Metric;
@@ -77,11 +76,6 @@ export class AppComponent implements AfterViewInit, OnInit{
     try{
       this.db.initCall();
       this.myForm = this.formBuilder.group({
-        // Empty string means no initial value. Can be also specific date range for example:
-        // {beginDate: {year: 2018, month: 10, day: 9}, endDate: {year: 2018, month: 10, day: 19}}
-        // which sets this date range to initial value. It is also possible to set initial
-        // value using the selDateRange attribute.
-
         myDateRange: ['', Validators.required],
         myItSelector: ''
       });
@@ -153,7 +147,6 @@ export class AppComponent implements AfterViewInit, OnInit{
 
   private showLoginModal(){
     $('#login-modal').modal();
-    //this.inpt['_results']['0'].nativeElement.focus();
   }
 
   private authLogin() {
@@ -178,6 +171,8 @@ export class AppComponent implements AfterViewInit, OnInit{
             this.metricInstances['_results']['1'].exit();
             this.csat_sent = false;
             this.nps_sent = false;
+            this.reload_csat = false;
+            this.reload_nps = false;
             this.npstotal_shown = false;
           } else {
             alert("ACCESS DENIED\n Unknown credentials");
